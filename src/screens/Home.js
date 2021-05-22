@@ -62,10 +62,9 @@ const Items = ({data, selectedItems, onClick, getData, loading}) => {
       <View style={styles.footer}>
         <TouchableOpacity
           activeOpacity={0.9}
-          onPress={getData}
           //On Click of button load more data
           style={styles.loadMoreBtn}>
-          <Text style={styles.btnText}>Load More</Text>
+          <Text style={styles.btnText}>Loading...</Text>
           {loading ? (
             <ActivityIndicator color="white" style={{marginLeft: 8}} />
           ) : null}
@@ -81,6 +80,8 @@ const Items = ({data, selectedItems, onClick, getData, loading}) => {
       keyExtractor={item => item.email}
       extraData={selectedItems}
       ListFooterComponent={renderFooter}
+      onEndReached={getData}
+      onEndReachedThreshold={0.1}
     />
   );
 };
